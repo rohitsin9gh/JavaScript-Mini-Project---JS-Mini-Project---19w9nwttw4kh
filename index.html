@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+    <title>Inventory Management</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Login</title>
+
+
+    </head>
+
+    <body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-success">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Sign In</h1>
+                    </div>
+
+                    <div class="panel-body">
+                        <form action="index.html" name="form">
+                        <fieldset>
+                            <div>
+                            <input class="form-control" id="user" placeholder="Username" type="username" pattern="^\S+$" minlength="6" required/>                        
+                            </div><br/>
+
+                            <div>
+                            <i class="fa fa-eye" id="togglePassword"></i>
+                            <input  type="password" class="form-control" id="id_password" name="text" placeholder="Password" required/>
+                            </div><br/>
+
+                            <input class="btn btn-lg btn-success btn-block" type="submit" name="submit" value="Submit"  onclick="return checkData()">
+                            <div class="right">
+                                <span>Forgot <a href="#">password?</a></span>
+                            </div>
+                            </fieldset>
+                            <div class="new">
+                                <b>New Users ?</b><br><a href="signup.html">Register here</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="App.js"></script>
+    </body>
+
+</html>
+
 
