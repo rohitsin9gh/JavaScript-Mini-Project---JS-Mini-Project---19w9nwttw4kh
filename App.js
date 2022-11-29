@@ -2,46 +2,47 @@ function validation() {
   var retunval = true;
 
   let userName = document.forms["myForm"]["fname"].value;
-
+  document.getElementById("usrnm").innerHTML = "";
   if (userName.trim().length < 5) {
-    alert("length of username is too short");
+    document.getElementById("usrnm").innerHTML = "username is too short";
     retunval = false;
   }
 
   let email = document.forms["myForm"]["femail"].value;
-  if (email.trim().length > 40) {
-    alert("length of email is too long");
+  document.getElementById("usremail").innerHTML = "";
+  if (email.trim().length > 20) {
+    document.getElementById("usremail").innerHTML =
+      "length of email is too long";
     retunval = false;
   }
 
   let phone = document.forms["myForm"]["fcontact"].value;
+  document.getElementById("usrcontact").innerHTML = "";
   if (phone.trim().length != 10) {
-    alert("Phone number should be 10 legth");
+    document.getElementById("usrcontact").innerHTML =
+      "Phone number should be 10 digit";
     retunval = false;
   }
 
   let password = document.forms["myForm"]["fpassword"].value;
   let pswwd = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{5,10}$/;
+  document.getElementById("usrpsw").innerHTML = "";
   if (password.match(pswwd)) {
     retunval = true;
   } else {
-    alert(
-      "length from 5 to 10 and one capital and one small and number and one special char also"
-    );
+    document.getElementById("usrpsw").innerHTML =
+      "5-10, A-Z, a-z, 0-9, !@#$%^&*";
     retunval = false;
   }
 
   let cpassword = document.forms["myForm"]["fcpassword"].value;
+  document.getElementById("cpsw").innerHTML = "";
   if (cpassword != password) {
-    alert("Password and Confirm password should match");
+    document.getElementById("cpsw").innerHTML =
+      "Password and Confirm password should match";
     retunval = false;
   }
-
-  let subject = document.forms["myForm"]["fsubject"].value;
-  if (subject == "") {
-    alert("select ur course");
-    retunval = false;
-  }
+  return retunval;
 }
 function addData() {
   let username = document.getElementById("fname").value;
@@ -95,8 +96,9 @@ function checkData() {
     //   //   return false;
     // }
   });
+  document.getElementById("psw").innerHTML = "";
   if (!validUser) {
-    alert("invalid user name or password");
+    document.getElementById("psw").innerHTML = "Invalid user name or password";
   }
   return validUser;
 }
