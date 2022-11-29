@@ -92,6 +92,7 @@ a:active
     background-color: white;
 }
 
-
-
-
+#psw, #usrnm, #usremail, #usrcontact, #usrpsw, #cpsw{
+    color: red;
+    text-align: center;
+}
