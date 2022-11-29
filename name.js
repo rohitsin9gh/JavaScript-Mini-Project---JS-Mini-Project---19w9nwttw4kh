@@ -9,5 +9,5 @@ getUserName.forEach((user) => {
 });
 
 setTimeout(function () {
-  window.open("login.html", "_self");
+  window.open("index.html", "_self");
 }, 30000);
