@@ -1,66 +1,102 @@
+function validation() {
+  var retunval = true;
 
-const togglePassword = document.querySelector('#togglePassword');
-const password = document.querySelector('#id_password');
+  let userName = document.forms["myForm"]["fname"].value;
 
-togglePassword.addEventListener('click', function (e) {
-  // toggle the type attribute
-  const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-  password.setAttribute('type', type);
-  // toggle the eye slash icon
-  this.classList.toggle('fa-eye-slash');
-});
+  if (userName.trim().length < 5) {
+    alert("length of username is too short");
+    retunval = false;
+  }
 
+  let email = document.forms["myForm"]["femail"].value;
+  if (email.trim().length > 40) {
+    alert("length of email is too long");
+    retunval = false;
+  }
 
-function CheckPassword(inputtxt) 
-{ 
-var passw = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{5,10}$/;
-if(inputtxt.value.match(passw)) 
-    { 
-        return true;
-    }
-    else
-        { 
-            alert('password between 5 to 10 character, one numeric digit, one special charector, one uppercase and one lowercase letter')
-            return false;
-        }
+  let phone = document.forms["myForm"]["fcontact"].value;
+  if (phone.trim().length != 10) {
+    alert("Phone number should be 10 legth");
+    retunval = false;
+  }
+
+  let password = document.forms["myForm"]["fpassword"].value;
+  let pswwd = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{5,10}$/;
+  if (password.match(pswwd)) {
+    retunval = true;
+  } else {
+    alert(
+      "length from 5 to 10 and one capital and one small and number and one special char also"
+    );
+    retunval = false;
+  }
+
+  let cpassword = document.forms["myForm"]["fcpassword"].value;
+  if (cpassword != password) {
+    alert("Password and Confirm password should match");
+    retunval = false;
+  }
+
+  let subject = document.forms["myForm"]["fsubject"].value;
+  if (subject == "") {
+    alert("select ur course");
+    retunval = false;
+  }
+}
+function addData() {
+  let username = document.getElementById("fname").value;
+
+  let email = document.getElementById("femail").value;
+
+  let contact = document.getElementById("fcontact").value;
+
+  let password = document.getElementById("fpassword").value;
+
+  let userStorage = localStorage.getItem("user");
+
+  if (!userStorage) {
+    userStorage = [];
+  } else {
+    userStorage = JSON.parse(userStorage);
+  }
+
+  let obj1 = { username, email, contact, password };
+
+  let user = [obj1];
+
+  let arr = [...userStorage];
+
+  arr.push(obj1);
+
+  localStorage.setItem("user", JSON.stringify(arr));
 }
 
-function addData(){
-    let userName = document.getElementById("user").value;
-    let password = document.getElementById("id_password").value;
+function checkData() {
+  let userName = document.getElementById("fname").value;
+  let password = document.getElementById("fpassword").value;
 
-    // store data in localstorage
+  let userStorage = localStorage.getItem("user");
 
-    localStorage.setItem("username",userName);
-    localStorage.setItem("pasword",password);
-}
+  // get data from localstorage
 
-
-function checkData(){
-    let userName = document.getElementById("user").value;
-    let password = document.getElementById("id_password").value;
-    
-    // get data from localstorage
-
-    let getUserName = localStorage.getItem('username');
-    let getPassword = localStorage.getItem('pasword')
-
-    if(userName == getUserName)
-    {
-        if(password == getPassword)
-        {
-            return true;
-        }
-        else
-        {
-            alert("wrong passwrod");
-            return false;
-        }
+  let getUserName = JSON.parse(userStorage);
+  // console.log(getUserName);
+  let validUser = false;
+  getUserName.forEach((user) => {
+    if (userName == user.username && password == user.password) {
+      validUser = true;
     }
-    else
-    {
-        alert("Invalid username or password");
-    }
+    //else {
+    //     alert("wrong passwrod");
+    //     // return false;
+    //   }
+    // } else {
+    //   alert("Invalid username");
+    //   //   return false;
+    // }
+  });
+  if (!validUser) {
+    alert("invalid user name or password");
+  }
+  return validUser;
 }
-
-
